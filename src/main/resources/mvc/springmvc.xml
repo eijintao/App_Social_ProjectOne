@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+         http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- 添加扫描注解控制器 -->
+    <context:component-scan base-package="com.xm.app.controller"></context:component-scan>
+
+    <!--适配器和映射器注解-->
+    <mvc:annotation-driven/>
+
+    <!--静态资源放行-->
+    <mvc:default-servlet-handler/>
+
+    <!-- 视图解析器 -->
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/"></property>
+        <property name="suffix" value=".jsp"></property>
+    </bean>-->
+
+    <!-- 实现文件上传的配置  -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxUploadSize" value="5242880"/>
+    </bean>
+    <!--拦截器-->
+    <!-- <mvc:interceptors>
+         &lt;!&ndash; 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 &ndash;&gt;
+         &lt;!&ndash; <bean class="com.bybo.aca.web.interceptor.Login"/> &ndash;&gt;
+         <mvc:interceptor>
+             &lt;!&ndash; 进行拦截：/**表示拦截所有controller &ndash;&gt;
+             <mvc:mapping path="/**" />
+             &lt;!&ndash; 不进行拦截 &ndash;&gt;
+             <mvc:exclude-mapping path=" " />&lt;!&ndash;这里是控制里登录的地址&ndash;&gt;
+
+
+             <bean class="com.xm.Interceptor." />
+         </mvc:interceptor>
+     </mvc:interceptors>
+ -->
+</beans>
