@@ -11,6 +11,7 @@ import java.util.List;
 /**
  * @author Mei Jintao
  * @date 2019/9/5 10:01
+ * 测试业务层
  */
 @Service
 public class TestServiceImpl implements TestService {
@@ -22,7 +23,7 @@ public class TestServiceImpl implements TestService {
 
 
 
-
+     @Override
     public List<Test> getTestAll() {
 
         return testMapper.selectByExample(new TestExample());

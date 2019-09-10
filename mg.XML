@@ -12,7 +12,7 @@
         </commentGenerator>
         <!--数据库连接信息-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql:///tmp?characterEncoding=utf-8"
+                        connectionURL="jdbc:mysql:///app_live?characterEncoding=utf-8"
                         userId="root"
                         password="root"
         ></jdbcConnection>
@@ -32,7 +32,7 @@
             <property name="trimStrings" value="true"></property>
         </javaModelGenerator>
         <!--sql映射文件配置-->
-        <sqlMapGenerator targetPackage="mapper" targetProject=".\src\main\resources\mybatis\mappers">
+        <sqlMapGenerator targetPackage="mappers" targetProject=".\src\main\resources\mybatis\mappers">
             <property name="enableSubPackages" value="true"></property>
         </sqlMapGenerator>
 
@@ -44,7 +44,29 @@
         <!--数据库与实体映射-->
       <!--  <table tableName="street" domainObjectName="Street"></table>
         <table tableName="type" domainObjectName="Type"></table>-->
-        <table tableName="test" domainObjectName="Test"></table>
-        <table tableName="uslogin" domainObjectName="Uslogin"></table>
+
+
+      <!--  <table tableName="access_token" domainObjectName="Access_token"></table>
+        <table tableName="call_evaluation_records" domainObjectName="Call_evaluation_records"></table>
+        <table tableName="call_records" domainObjectName="Call_records"></table>
+        <table tableName="gift_records" domainObjectName="Gift_records"></table>
+        <table tableName="gifts" domainObjectName="Gifts"></table>
+        <table tableName="im_rongcloud" domainObjectName="Im_rongcloud"></table>
+        <table tableName="message_records" domainObjectName="Message_records"></table>
+        <table tableName="pay_goods" domainObjectName="Pay_goods"></table>
+        <table tableName="pay_orders" domainObjectName="Pay_orders"></table>
+        <table tableName="photos" domainObjectName="Photos"></table>
+        <table tableName="refresh_tokens" domainObjectName="Refresh_tokens"></table>
+        <table tableName="sms_code" domainObjectName="Sms_code"></table>
+        <table tableName="user_blacklist" domainObjectName="User_blacklist"></table>
+        <table tableName="user_exchange_records" domainObjectName="User_exchange_records"></table>
+        <table tableName="user_expenditure_records" domainObjectName="User_expenditure_records"></table>
+        <table tableName="user_following" domainObjectName="User_following"></table>
+        <table tableName="user_visitors" domainObjectName="User_visitors"></table>
+        <table tableName="users" domainObjectName="Users"></table>
+        <table tableName="video_likes" domainObjectName="Video_likes"></table>
+        <table tableName="videos" domainObjectName="Videos"></table>-->
+
+
     </context>
 </generatorConfiguration>

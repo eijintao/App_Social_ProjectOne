@@ -7,9 +7,13 @@ import java.util.List;
 /**
  * @author Mei Jintao
  * @date 2019/9/5 10:01
+ * 测试业务接口
  */
 public interface TestService {
 
     /**查询全部*/
     public List<Test> getTestAll();
+
+
+
 }

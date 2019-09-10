@@ -27,10 +27,10 @@
     <mvc:default-servlet-handler/>
 
     <!-- 视图解析器 -->
-    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/"></property>
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/page"></property>
         <property name="suffix" value=".jsp"></property>
-    </bean>-->
+    </bean>
 
     <!-- 实现文件上传的配置  -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -45,11 +45,10 @@
              &lt;!&ndash; 进行拦截：/**表示拦截所有controller &ndash;&gt;
              <mvc:mapping path="/**" />
              &lt;!&ndash; 不进行拦截 &ndash;&gt;
-             <mvc:exclude-mapping path=" " />&lt;!&ndash;这里是控制里登录的地址&ndash;&gt;
+             <mvc:exclude-mapping path="/page/token" />&lt;!&ndash;这里是控制里登录的地址&ndash;&gt;
 
 
-             <bean class="com.xm.Interceptor." />
+             <bean class="com.xm.app.Interceptor.AuthenticationInterceptor" />
          </mvc:interceptor>
-     </mvc:interceptors>
- -->
+     </mvc:interceptors>-->
 </beans>
