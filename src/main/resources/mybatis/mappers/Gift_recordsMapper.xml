@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xm.app.mapper.Gift_recordsMapper">
+  <resultMap id="BaseResultMap" type="com.xm.app.entity.Gift_records">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="giver_id" jdbcType="INTEGER" property="giverId" />
+    <result column="recipient_id" jdbcType="INTEGER" property="recipientId" />
+    <result column="video_id" jdbcType="INTEGER" property="videoId" />
+    <result column="gift_id" jdbcType="INTEGER" property="giftId" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="total_amount" jdbcType="INTEGER" property="totalAmount" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, giver_id, recipient_id, video_id, gift_id, count, total_amount, created_at, updated_at
+  </sql>
+  <select id="selectByExample" parameterType="com.xm.app.entity.Gift_recordsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from gift_records
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gift_records
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gift_records
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xm.app.entity.Gift_recordsExample">
+    delete from gift_records
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xm.app.entity.Gift_records">
+    insert into gift_records (id, giver_id, recipient_id, 
+      video_id, gift_id, count, 
+      total_amount, created_at, updated_at
+      )
+    values (#{id,jdbcType=INTEGER}, #{giverId,jdbcType=INTEGER}, #{recipientId,jdbcType=INTEGER}, 
+      #{videoId,jdbcType=INTEGER}, #{giftId,jdbcType=INTEGER}, #{count,jdbcType=INTEGER}, 
+      #{totalAmount,jdbcType=INTEGER}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xm.app.entity.Gift_records">
+    insert into gift_records
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="giverId != null">
+        giver_id,
+      </if>
+      <if test="recipientId != null">
+        recipient_id,
+      </if>
+      <if test="videoId != null">
+        video_id,
+      </if>
+      <if test="giftId != null">
+        gift_id,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="totalAmount != null">
+        total_amount,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="giverId != null">
+        #{giverId,jdbcType=INTEGER},
+      </if>
+      <if test="recipientId != null">
+        #{recipientId,jdbcType=INTEGER},
+      </if>
+      <if test="videoId != null">
+        #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="giftId != null">
+        #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null">
+        #{totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xm.app.entity.Gift_recordsExample" resultType="java.lang.Integer">
+    select count(*) from gift_records
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update gift_records
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.giverId != null">
+        giver_id = #{record.giverId,jdbcType=INTEGER},
+      </if>
+      <if test="record.recipientId != null">
+        recipient_id = #{record.recipientId,jdbcType=INTEGER},
+      </if>
+      <if test="record.videoId != null">
+        video_id = #{record.videoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.giftId != null">
+        gift_id = #{record.giftId,jdbcType=INTEGER},
+      </if>
+      <if test="record.count != null">
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalAmount != null">
+        total_amount = #{record.totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update gift_records
+    set id = #{record.id,jdbcType=INTEGER},
+      giver_id = #{record.giverId,jdbcType=INTEGER},
+      recipient_id = #{record.recipientId,jdbcType=INTEGER},
+      video_id = #{record.videoId,jdbcType=INTEGER},
+      gift_id = #{record.giftId,jdbcType=INTEGER},
+      count = #{record.count,jdbcType=INTEGER},
+      total_amount = #{record.totalAmount,jdbcType=INTEGER},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xm.app.entity.Gift_records">
+    update gift_records
+    <set>
+      <if test="giverId != null">
+        giver_id = #{giverId,jdbcType=INTEGER},
+      </if>
+      <if test="recipientId != null">
+        recipient_id = #{recipientId,jdbcType=INTEGER},
+      </if>
+      <if test="videoId != null">
+        video_id = #{videoId,jdbcType=INTEGER},
+      </if>
+      <if test="giftId != null">
+        gift_id = #{giftId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="totalAmount != null">
+        total_amount = #{totalAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xm.app.entity.Gift_records">
+    update gift_records
+    set giver_id = #{giverId,jdbcType=INTEGER},
+      recipient_id = #{recipientId,jdbcType=INTEGER},
+      video_id = #{videoId,jdbcType=INTEGER},
+      gift_id = #{giftId,jdbcType=INTEGER},
+      count = #{count,jdbcType=INTEGER},
+      total_amount = #{totalAmount,jdbcType=INTEGER},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

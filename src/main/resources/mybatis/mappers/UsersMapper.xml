@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xm.app.mapper.UsersMapper">
+  <resultMap id="BaseResultMap" type="com.xm.app.entity.Users">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="cover" jdbcType="VARCHAR" property="cover" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="occupation" jdbcType="VARCHAR" property="occupation" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="level" jdbcType="INTEGER" property="level" />
+    <result column="exp" jdbcType="INTEGER" property="exp" />
+    <result column="online_state" jdbcType="CHAR" property="onlineState" />
+    <result column="andhor_level" jdbcType="INTEGER" property="andhorLevel" />
+    <result column="anchor_audio_price" jdbcType="INTEGER" property="anchorAudioPrice" />
+    <result column="anchor_video_price" jdbcType="INTEGER" property="anchorVideoPrice" />
+    <result column="consumption" jdbcType="INTEGER" property="consumption" />
+    <result column="revenue" jdbcType="INTEGER" property="revenue" />
+    <result column="vip_level" jdbcType="INTEGER" property="vipLevel" />
+    <result column="vip_expires_at" jdbcType="DATE" property="vipExpiresAt" />
+    <result column="updated_ip" jdbcType="VARCHAR" property="updatedIp" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, mobile, nickname, avatar, gender, cover, birthday, province, city, signature, 
+    occupation, type, level, exp, online_state, andhor_level, anchor_audio_price, anchor_video_price, 
+    consumption, revenue, vip_level, vip_expires_at, updated_ip, created_at, updated_at
+  </sql>
+  <select id="selectByExample" parameterType="com.xm.app.entity.UsersExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from users
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xm.app.entity.UsersExample">
+    delete from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xm.app.entity.Users">
+    insert into users (id, mobile, nickname, 
+      avatar, gender, cover, 
+      birthday, province, city, 
+      signature, occupation, type, 
+      level, exp, online_state, 
+      andhor_level, anchor_audio_price, anchor_video_price, 
+      consumption, revenue, vip_level, 
+      vip_expires_at, updated_ip, created_at, 
+      updated_at)
+    values (#{id,jdbcType=INTEGER}, #{mobile,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{avatar,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, #{cover,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{signature,jdbcType=VARCHAR}, #{occupation,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, 
+      #{level,jdbcType=INTEGER}, #{exp,jdbcType=INTEGER}, #{onlineState,jdbcType=CHAR}, 
+      #{andhorLevel,jdbcType=INTEGER}, #{anchorAudioPrice,jdbcType=INTEGER}, #{anchorVideoPrice,jdbcType=INTEGER}, 
+      #{consumption,jdbcType=INTEGER}, #{revenue,jdbcType=INTEGER}, #{vipLevel,jdbcType=INTEGER}, 
+      #{vipExpiresAt,jdbcType=DATE}, #{updatedIp,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xm.app.entity.Users">
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="nickname != null">
+        nickname,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="gender != null">
+        gender,
+      </if>
+      <if test="cover != null">
+        cover,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+      <if test="occupation != null">
+        occupation,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="exp != null">
+        exp,
+      </if>
+      <if test="onlineState != null">
+        online_state,
+      </if>
+      <if test="andhorLevel != null">
+        andhor_level,
+      </if>
+      <if test="anchorAudioPrice != null">
+        anchor_audio_price,
+      </if>
+      <if test="anchorVideoPrice != null">
+        anchor_video_price,
+      </if>
+      <if test="consumption != null">
+        consumption,
+      </if>
+      <if test="revenue != null">
+        revenue,
+      </if>
+      <if test="vipLevel != null">
+        vip_level,
+      </if>
+      <if test="vipExpiresAt != null">
+        vip_expires_at,
+      </if>
+      <if test="updatedIp != null">
+        updated_ip,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        #{gender,jdbcType=CHAR},
+      </if>
+      <if test="cover != null">
+        #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null">
+        #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="onlineState != null">
+        #{onlineState,jdbcType=CHAR},
+      </if>
+      <if test="andhorLevel != null">
+        #{andhorLevel,jdbcType=INTEGER},
+      </if>
+      <if test="anchorAudioPrice != null">
+        #{anchorAudioPrice,jdbcType=INTEGER},
+      </if>
+      <if test="anchorVideoPrice != null">
+        #{anchorVideoPrice,jdbcType=INTEGER},
+      </if>
+      <if test="consumption != null">
+        #{consumption,jdbcType=INTEGER},
+      </if>
+      <if test="revenue != null">
+        #{revenue,jdbcType=INTEGER},
+      </if>
+      <if test="vipLevel != null">
+        #{vipLevel,jdbcType=INTEGER},
+      </if>
+      <if test="vipExpiresAt != null">
+        #{vipExpiresAt,jdbcType=DATE},
+      </if>
+      <if test="updatedIp != null">
+        #{updatedIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xm.app.entity.UsersExample" resultType="java.lang.Integer">
+    select count(*) from users
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update users
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nickname != null">
+        nickname = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.avatar != null">
+        avatar = #{record.avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gender != null">
+        gender = #{record.gender,jdbcType=CHAR},
+      </if>
+      <if test="record.cover != null">
+        cover = #{record.cover,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthday != null">
+        birthday = #{record.birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null">
+        province = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.city != null">
+        city = #{record.city,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signature != null">
+        signature = #{record.signature,jdbcType=VARCHAR},
+      </if>
+      <if test="record.occupation != null">
+        occupation = #{record.occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=CHAR},
+      </if>
+      <if test="record.level != null">
+        level = #{record.level,jdbcType=INTEGER},
+      </if>
+      <if test="record.exp != null">
+        exp = #{record.exp,jdbcType=INTEGER},
+      </if>
+      <if test="record.onlineState != null">
+        online_state = #{record.onlineState,jdbcType=CHAR},
+      </if>
+      <if test="record.andhorLevel != null">
+        andhor_level = #{record.andhorLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.anchorAudioPrice != null">
+        anchor_audio_price = #{record.anchorAudioPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.anchorVideoPrice != null">
+        anchor_video_price = #{record.anchorVideoPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.consumption != null">
+        consumption = #{record.consumption,jdbcType=INTEGER},
+      </if>
+      <if test="record.revenue != null">
+        revenue = #{record.revenue,jdbcType=INTEGER},
+      </if>
+      <if test="record.vipLevel != null">
+        vip_level = #{record.vipLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.vipExpiresAt != null">
+        vip_expires_at = #{record.vipExpiresAt,jdbcType=DATE},
+      </if>
+      <if test="record.updatedIp != null">
+        updated_ip = #{record.updatedIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdAt != null">
+        created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatedAt != null">
+        updated_at = #{record.updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update users
+    set id = #{record.id,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=VARCHAR},
+      nickname = #{record.nickname,jdbcType=VARCHAR},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      gender = #{record.gender,jdbcType=CHAR},
+      cover = #{record.cover,jdbcType=VARCHAR},
+      birthday = #{record.birthday,jdbcType=VARCHAR},
+      province = #{record.province,jdbcType=VARCHAR},
+      city = #{record.city,jdbcType=VARCHAR},
+      signature = #{record.signature,jdbcType=VARCHAR},
+      occupation = #{record.occupation,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=CHAR},
+      level = #{record.level,jdbcType=INTEGER},
+      exp = #{record.exp,jdbcType=INTEGER},
+      online_state = #{record.onlineState,jdbcType=CHAR},
+      andhor_level = #{record.andhorLevel,jdbcType=INTEGER},
+      anchor_audio_price = #{record.anchorAudioPrice,jdbcType=INTEGER},
+      anchor_video_price = #{record.anchorVideoPrice,jdbcType=INTEGER},
+      consumption = #{record.consumption,jdbcType=INTEGER},
+      revenue = #{record.revenue,jdbcType=INTEGER},
+      vip_level = #{record.vipLevel,jdbcType=INTEGER},
+      vip_expires_at = #{record.vipExpiresAt,jdbcType=DATE},
+      updated_ip = #{record.updatedIp,jdbcType=VARCHAR},
+      created_at = #{record.createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{record.updatedAt,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xm.app.entity.Users">
+    update users
+    <set>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null">
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null">
+        gender = #{gender,jdbcType=CHAR},
+      </if>
+      <if test="cover != null">
+        cover = #{cover,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="occupation != null">
+        occupation = #{occupation,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null">
+        exp = #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="onlineState != null">
+        online_state = #{onlineState,jdbcType=CHAR},
+      </if>
+      <if test="andhorLevel != null">
+        andhor_level = #{andhorLevel,jdbcType=INTEGER},
+      </if>
+      <if test="anchorAudioPrice != null">
+        anchor_audio_price = #{anchorAudioPrice,jdbcType=INTEGER},
+      </if>
+      <if test="anchorVideoPrice != null">
+        anchor_video_price = #{anchorVideoPrice,jdbcType=INTEGER},
+      </if>
+      <if test="consumption != null">
+        consumption = #{consumption,jdbcType=INTEGER},
+      </if>
+      <if test="revenue != null">
+        revenue = #{revenue,jdbcType=INTEGER},
+      </if>
+      <if test="vipLevel != null">
+        vip_level = #{vipLevel,jdbcType=INTEGER},
+      </if>
+      <if test="vipExpiresAt != null">
+        vip_expires_at = #{vipExpiresAt,jdbcType=DATE},
+      </if>
+      <if test="updatedIp != null">
+        updated_ip = #{updatedIp,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xm.app.entity.Users">
+    update users
+    set mobile = #{mobile,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      cover = #{cover,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      occupation = #{occupation,jdbcType=VARCHAR},
+      type = #{type,jdbcType=CHAR},
+      level = #{level,jdbcType=INTEGER},
+      exp = #{exp,jdbcType=INTEGER},
+      online_state = #{onlineState,jdbcType=CHAR},
+      andhor_level = #{andhorLevel,jdbcType=INTEGER},
+      anchor_audio_price = #{anchorAudioPrice,jdbcType=INTEGER},
+      anchor_video_price = #{anchorVideoPrice,jdbcType=INTEGER},
+      consumption = #{consumption,jdbcType=INTEGER},
+      revenue = #{revenue,jdbcType=INTEGER},
+      vip_level = #{vipLevel,jdbcType=INTEGER},
+      vip_expires_at = #{vipExpiresAt,jdbcType=DATE},
+      updated_ip = #{updatedIp,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+</mapper>
