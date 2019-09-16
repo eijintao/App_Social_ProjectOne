@@ -240,4 +240,34 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+
+  <!--查看用户是否存在-->
+  <select id="checkUserName" resultType="java.lang.String" parameterType="com.xm.app.entity.Sms_code" >
+    SELECT * FROM sms_code
+    <where>
+      <if test="_parameter != null">
+        AND mobile = #{mobile}
+      </if>
+
+    </where>
+  </select>
+
+
+  <!--条件查询-->
+  <select id="selectByUserNameAndPassword" resultMap="BaseResultMap" parameterType="com.xm.app.entity.Sms_code">
+    SELECT <include refid="columns"/> FROM sms_code
+    <where>
+      <if test="mobile != null and !&quot;&quot;.equals(mobile.trim())">
+        AND mobile=#{mobile}
+      </if>
+      <if test="code != null and !&quot;&quot;.equals(code.trim())">
+        AND code=#{code}
+      </if>
+
+    </where>
+
+  </select>
+
+  <sql id="columns">id,mobile,code</sql>
 </mapper>

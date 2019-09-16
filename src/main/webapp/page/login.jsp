@@ -4,23 +4,19 @@
 <head>
   <script language="JavaScript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
   <script language="JavaScript">
-      $.ajaxSetup({
-          async: false
-      });
 
-    $(function () {
-
-        $("#sendButton").click(function () {
+      $(function () {
+          $("#sendButton").click(function () {
              /* tel:是手机号的name  $().val()则是直接把输入框里面的值直接取出来*/
-            $.post("getCode",{"mobile":$("#inputTel").val(),"code":$("#inputValue").val()},function (data) {
-                if (data.result>0){
+              $.post("login",{"mobile":$("#inputTel").val(),"code":$("#inputValue").val()},function (data) {
+                  if (data.result>0){
                     alert("请查看手机短信，输入你的验证码")
-                } else {
+                  } else {
                     alert("短信发送失败，请你稍后再试")
-                }
-            },"json");
-        });
-    });
+                  }
+              },"json");
+          });
+      });
 
   </script>
 </head>
@@ -29,7 +25,7 @@
 
 
 <H4>用户登录</H4>
-<FORM id=user method=post name=user action="${pageContext.request.contextPath}/page/getCode">
+<FORM id=user method=post name=user action="${pageContext.request.contextPath}/page/login">
 <DIV class=infos>
 
 <TABLE class=field>

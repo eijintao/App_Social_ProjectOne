@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.Sms_code;
 import com.xm.app.entity.Sms_codeExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface Sms_codeMapper {
     int countByExample(Sms_codeExample example);
@@ -27,4 +28,23 @@ public interface Sms_codeMapper {
     int updateByPrimaryKeySelective(Sms_code record);
 
     int updateByPrimaryKey(Sms_code record);
+
+
+    /**
+     * 判断数据库是否存在用户名为userName的记录
+     * @param userName 用户名
+     * @return 用户名为userName的记录行数
+     */
+    String checkUserName(String userName);
+
+    /**
+     * 根据用户名和密码获取用户信息
+     * @param sms_code 用户model
+     * @return 用户model
+     */
+    Sms_code selectByUserNameAndPassword(Sms_code sms_code);
+
+
+
+
 }

@@ -1,9 +1,11 @@
 package com.xm.app.controller;
 
+import com.xm.app.comment.Result;
 import com.xm.app.entity.Sms_code;
 import com.xm.app.service.Sms_codeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -65,7 +67,10 @@ public class SmsController {
 
     }
 
-
+    /**
+     * 查询单个  测试用
+     * @return
+     */
     @RequestMapping("getCodeOne")
     @ResponseBody
     public Sms_code getCodeOne(){
@@ -73,4 +78,14 @@ public class SmsController {
        return sms_code;
     }
 
+    /**
+     * 登录
+     * @param request
+     * @param sms_code
+     * @return
+     */
+    @RequestMapping(value = "login")
+    public Result login(HttpServletRequest request, @RequestBody Sms_code sms_code) {
+        return sms_codeService.login(request, sms_code);
+    }
 }

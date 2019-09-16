@@ -23,8 +23,7 @@ public class TestController {
 
     @RequestMapping("/showTest")
     @ResponseBody
-
-    public List<Test> showTest(Model model){
+     public List<Test> showTest(Model model){
         List<Test> list= testService.getTestAll();
         model.addAttribute("list" ,list);
         return list;

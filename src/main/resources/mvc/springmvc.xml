@@ -45,10 +45,10 @@
              &lt;!&ndash; 进行拦截：/**表示拦截所有controller &ndash;&gt;
              <mvc:mapping path="/**" />
              &lt;!&ndash; 不进行拦截 &ndash;&gt;
-             <mvc:exclude-mapping path="/page/token" />&lt;!&ndash;这里是控制里登录的地址&ndash;&gt;
+             <mvc:exclude-mapping path="/page/token" />&lt;!&ndash;这里是控制里登录的地址  登录和获取验证码  获取版本信息，&ndash;&gt;
 
 
-             <bean class="com.xm.app.Interceptor.AuthenticationInterceptor" />
+             <bean class="com.xm.app.Interceptor.JWTInterceptor" />
          </mvc:interceptor>
      </mvc:interceptors>-->
 </beans>
