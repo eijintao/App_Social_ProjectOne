@@ -1,5 +1,6 @@
 package com.xm.app.service;
 
+import com.github.pagehelper.PageInfo;
 import com.xm.app.entity.User_following;
 
 /**
@@ -13,4 +14,13 @@ public interface User_followingService {
      * @return
      */
     User_following selectByPrimaryKey(Integer id);
+
+
+    /**
+     * 查询用户关注的分页
+     * @param page  页码
+     * @param rows  页大小
+     * @return
+     */
+    PageInfo<User_following> getAllUserFollowingByPage(Integer page, Integer rows);
 }

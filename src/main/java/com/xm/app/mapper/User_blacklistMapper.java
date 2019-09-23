@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.User_blacklist;
 import com.xm.app.entity.User_blacklistExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface User_blacklistMapper {
     int countByExample(User_blacklistExample example);
@@ -27,4 +28,7 @@ public interface User_blacklistMapper {
     int updateByPrimaryKeySelective(User_blacklist record);
 
     int updateByPrimaryKey(User_blacklist record);
+
+
+    List<User_blacklist> getAllUserBlacklist();
 }

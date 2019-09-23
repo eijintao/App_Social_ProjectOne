@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.Video_likes;
 import com.xm.app.entity.Video_likesExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface Video_likesMapper {
     int countByExample(Video_likesExample example);
@@ -27,4 +28,6 @@ public interface Video_likesMapper {
     int updateByPrimaryKeySelective(Video_likes record);
 
     int updateByPrimaryKey(Video_likes record);
+
+    List<Video_likes> getAllVideoLikes();
 }

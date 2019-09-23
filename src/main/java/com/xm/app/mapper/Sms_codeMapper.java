@@ -32,10 +32,10 @@ public interface Sms_codeMapper {
 
     /**
      * 判断数据库是否存在用户名为userName的记录
-     * @param userName 用户名
+     * @param mobile 用户名
      * @return 用户名为userName的记录行数
      */
-    String checkUserName(String userName);
+    String checkUserName(String mobile);
 
     /**
      * 根据用户名和密码获取用户信息
@@ -45,6 +45,6 @@ public interface Sms_codeMapper {
     Sms_code selectByUserNameAndPassword(Sms_code sms_code);
 
 
-
+    List<Sms_code> getAllSmsCode();
 
 }

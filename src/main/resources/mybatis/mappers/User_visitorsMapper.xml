@@ -208,4 +208,8 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getAllUserVisitors" resultType="User_visitors" >
+    select * from user_visitors
+  </select>
 </mapper>

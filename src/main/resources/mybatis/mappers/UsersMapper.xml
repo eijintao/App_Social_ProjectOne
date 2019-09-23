@@ -525,6 +525,10 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+  <select id="getAllUser" resultType="Users">
+    select mobile from users
+
+  </select>
 
 
 </mapper>

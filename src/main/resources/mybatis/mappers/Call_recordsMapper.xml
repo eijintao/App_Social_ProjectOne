@@ -255,4 +255,8 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getAllCallRecords" resultType="Call_records" >
+    select * from call_records
+  </select>
 </mapper>

@@ -62,7 +62,7 @@ public class Sms_codeServiceImpl  implements Sms_codeService{
             return Result.createByErrorCodeMessage(ErrorCodeEnum.PARAMETER_ERROR.getCode(), "不能添加admin用户");
         }
 
-        String resultCount = sms_codeMapper.checkUserName(smsMobile);
+        String  resultCount = sms_codeMapper.checkUserName(smsMobile);
         if(resultCount.equals(request.getParameter("mobile"))) {
             return Result.createByErrorCodeMessage(ErrorCodeEnum.PARAMETER_ERROR.getCode(), "用户名已存在");
         }
@@ -74,49 +74,46 @@ public class Sms_codeServiceImpl  implements Sms_codeService{
 
     /**用户登录*/
     @Override
-    public Result<Map<String, Object>> login(HttpServletRequest request, Sms_code sms_code) {
-
-
-        //检查用户是否存在
-        String resultCount = sms_codeMapper.checkUserName(sms_code.getMobile());
-        if(!(resultCount.equals(request.getParameter("mobile")))){
-            return Result.createByErrorCodeMessage(ErrorCodeEnum.PARAMETER_ERROR.getCode(), "用户不存在,请重新输入");
-        }
-        //查询用户的手机号和雁阵码有没有。返回一个userResult。
-        Sms_code userResult = sms_codeMapper.selectByUserNameAndPassword(sms_code);
-        if (userResult == null) {
-            return Result.createByErrorCodeMessage(ErrorCodeEnum.PARAMETER_ERROR.getCode(), "请输入您的手机号！");
+    public Result<Map<String, Object>> login(HttpServletRequest request, Sms_code sms_code,Users users) {
+        //查询用户的手机号和验证码有没有。返回一个userResult。
+        // Sms_code userResult = sms_codeMapper.selectByUserNameAndPassword(sms_code);
+        //如果前端传过来的手机号是空值
+        if (request.getParameter("mobile") == null) {
+            return Result.createByErrorCodeMessage(ErrorCodeEnum.PARAMETER_ERROR.getCode(), "请输入您的手机号或验证码！");
         } else {
+
             Map<String, Object> data = new HashMap<String, Object>();
-            //这个是  写  sms_code的mobile
-            data.put("user",userResult);
+            //以下data是做死数据的，是写  sms_code的mobile
+            // data.put("user",userResult);
             //登录成功，设置jwt        在这之前，得把mobile写入users表里。也就是说users表里除了mobile，其他都是空值。
             //这样在 用户登录后，就是进入修改得页面。
 
+            //查询所有的手机号
+             Users allUser = usersMapper.getAllUser();
 
+             //用一个for循环来解决
 
-            Users users = new Users();
-            users.setId(userResult.getId());
-            users.setMobile(userResult.getMobile());
-           /* users.setNickname(null);
-            users.setAvatar(null);
-            users.setGender(null);
-            users.setCover(null);
-            users.setBirthday(null);
-            users.setProvince(null);
-            users.setCity(null);
-            users.setSignature(null);
-            users.*/
-            try {
-                // configconsts 是token有效期。
-                String jwt = JwtUtil.createJWT("jwt", "", ConfigConsts.TOKEN_LIFECYCLE, users);
-                data.put("token", jwt);
-                return Result.createBySuccess(data);
-            } catch (Exception e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+            //匹配前端传过来的手机号和数据库中对应，看是否存在手机号
+            if (request.getParameter("mobile").equals(allUser.getMobile())) {
+                //返回  手机号存在  信息
+                return Result.createByErrorCodeMessage(ErrorCodeEnum.MOBILE_SUCCESS.getCode(), "手机号已存在");
+            } else {
+                //如果手机号不存在，获取前端传过来的手机号
+                users.setMobile(request.getParameter("mobile"));
+                //写进数据库里
+                 usersMapper.insert(users);
+
+                try {
+                    // configconsts 是token有效期。
+                    String jwt = JwtUtil.createJWT("jwt", "", ConfigConsts.TOKEN_LIFECYCLE, users);
+                    data.put("token", jwt);
+                    return Result.createBySuccess(data);
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                return Result.createByError();
             }
-            return Result.createByError();
         }
     }
 }

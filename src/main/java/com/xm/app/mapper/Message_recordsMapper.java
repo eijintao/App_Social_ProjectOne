@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.Message_records;
 import com.xm.app.entity.Message_recordsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface Message_recordsMapper {
     int countByExample(Message_recordsExample example);
@@ -27,4 +28,6 @@ public interface Message_recordsMapper {
     int updateByPrimaryKeySelective(Message_records record);
 
     int updateByPrimaryKey(Message_records record);
+
+    List<Message_records> getAllMessageRecords();
 }

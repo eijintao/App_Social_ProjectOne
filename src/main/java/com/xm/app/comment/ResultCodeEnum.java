@@ -14,6 +14,7 @@ public enum ResultCodeEnum {
     RESULT_CODE_NOT_FOUND(404, "未找到资源"),
     RESULT_CODE_SERVER_ERROR(500, "服务端出错");
 
+
     public static String DEFAULT_SUCCESS_MESSAGE = "完全O文明K！";
     public static String DEFAULT_ERROR_MESSAGE = "这代码有毒啊！";
 

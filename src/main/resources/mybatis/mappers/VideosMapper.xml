@@ -287,4 +287,8 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getAllVideos" resultType="Videos" >
+    select * from videos
+  </select>
 </mapper>

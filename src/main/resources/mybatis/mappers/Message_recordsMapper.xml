@@ -240,4 +240,8 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="getAllMessageRecords" resultType="Message_records" >
+    select * from message_records
+  </select>
 </mapper>

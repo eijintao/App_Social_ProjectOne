@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.User_following;
 import com.xm.app.entity.User_followingExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface User_followingMapper {
     int countByExample(User_followingExample example);
@@ -27,4 +28,6 @@ public interface User_followingMapper {
     int updateByPrimaryKeySelective(User_following record);
 
     int updateByPrimaryKey(User_following record);
+
+    List<User_following> getAllUserFollowing();
 }

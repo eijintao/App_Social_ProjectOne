@@ -240,4 +240,8 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--查询所有用户支出记录-->
+  <select id="getAllUserExpenditureRecords" resultType="User_expenditure_records" >
+    select * from user_expenditure_records
+  </select>
 </mapper>

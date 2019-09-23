@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.User_visitors;
 import com.xm.app.entity.User_visitorsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface User_visitorsMapper {
     int countByExample(User_visitorsExample example);
@@ -27,4 +28,6 @@ public interface User_visitorsMapper {
     int updateByPrimaryKeySelective(User_visitors record);
 
     int updateByPrimaryKey(User_visitors record);
+
+     List<User_visitors> getAllUserVisitors();
 }

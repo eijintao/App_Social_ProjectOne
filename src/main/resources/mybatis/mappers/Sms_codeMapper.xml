@@ -249,7 +249,7 @@
       <if test="_parameter != null">
         AND mobile = #{mobile}
       </if>
-
+       and id=#{id}
     </where>
   </select>
 
@@ -266,6 +266,13 @@
       </if>
 
     </where>
+    limit 1
+
+  </select>
+
+  <!--查询所有-->
+  <select id="getAllSmsCode" resultType="Sms_code">
+    select  * from  sms_code
 
   </select>
 

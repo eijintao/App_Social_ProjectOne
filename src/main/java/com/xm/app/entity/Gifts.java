@@ -1,5 +1,7 @@
 package com.xm.app.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
 public class Gifts {
@@ -8,9 +10,9 @@ public class Gifts {
     private String name;
 
     private Integer price;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;
-
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updatedAt;
 
     public Integer getId() {

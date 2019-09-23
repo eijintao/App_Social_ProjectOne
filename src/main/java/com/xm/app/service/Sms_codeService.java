@@ -2,6 +2,7 @@ package com.xm.app.service;
 
 import com.xm.app.comment.Result;
 import com.xm.app.entity.Sms_code;
+import com.xm.app.entity.Users;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -42,7 +43,7 @@ public interface Sms_codeService  {
      * @param sms_code　用户信息
      * @return 登录结果
      */
-    Result<Map<String, Object>> login(HttpServletRequest request, Sms_code sms_code);
+    Result<Map<String, Object>> login(HttpServletRequest request, Sms_code sms_code, Users users);
 
 
 

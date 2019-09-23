@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.Gifts;
 import com.xm.app.entity.GiftsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface GiftsMapper {
     int countByExample(GiftsExample example);
@@ -27,4 +28,6 @@ public interface GiftsMapper {
     int updateByPrimaryKeySelective(Gifts record);
 
     int updateByPrimaryKey(Gifts record);
+
+    List<Gifts> getAllGifts();
 }

@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.Videos;
 import com.xm.app.entity.VideosExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface VideosMapper {
     int countByExample(VideosExample example);
@@ -27,4 +28,7 @@ public interface VideosMapper {
     int updateByPrimaryKeySelective(Videos record);
 
     int updateByPrimaryKey(Videos record);
+
+
+    List<Videos> getAllVideos();
 }

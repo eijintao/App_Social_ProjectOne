@@ -17,7 +17,21 @@ public enum ErrorCodeEnum {
     DB_EXIST_SAME_RECORD(10005, "新添加记录已存在"),
     BUSINESS_ERROR(10006, "业务逻辑出错"),
     VALIDATE_CODE_ERROR(10007, "验证码错误"),
-    TOKEN_MISMATCH_USER(10008, "Token与当前用户id不匹配");
+    TOKEN_MISMATCH_USER(10008, "Token与当前用户id不匹配"),
+
+
+    /**
+     * 图片及视频错误提示及信息
+     * */
+    PHOTOS_FORMAT_ERROR(10009,"图片格式错误"),
+    PHOTOS_FORMAT_SUCCESS(10010,"图片上传成功"),
+
+    MOBILE_SUCCESS(10011,"手机号已存在")
+    ;
+
+
+
+
 
     private Integer code;
     private String message;

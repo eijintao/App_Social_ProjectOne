@@ -36,19 +36,24 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding" value="UTF-8"/>
         <property name="maxUploadSize" value="5242880"/>
+        <!-- 经实验，上传文件大小高于此参数，会生成临时文件。低于此参数，会放入内存，所以，值一般比较小 -->
+      <!--  <property name="maxInMemorySize" value="2048" />-->
     </bean>
     <!--拦截器-->
-    <!-- <mvc:interceptors>
-         &lt;!&ndash; 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 &ndash;&gt;
-         &lt;!&ndash; <bean class="com.bybo.aca.web.interceptor.Login"/> &ndash;&gt;
+     <mvc:interceptors>
+         <!-- 使用bean定义一个Interceptor，直接定义在mvc:interceptors根下面的Interceptor将拦截所有的请求 -->
+         <!-- <bean class="com.bybo.aca.web.interceptor.Login"/> -->
          <mvc:interceptor>
-             &lt;!&ndash; 进行拦截：/**表示拦截所有controller &ndash;&gt;
+             <!-- 进行拦截：/**表示拦截所有controller -->
              <mvc:mapping path="/**" />
-             &lt;!&ndash; 不进行拦截 &ndash;&gt;
-             <mvc:exclude-mapping path="/page/token" />&lt;!&ndash;这里是控制里登录的地址  登录和获取验证码  获取版本信息，&ndash;&gt;
+             <!-- 不进行拦截 -->
+             <mvc:exclude-mapping path="/page/login" /><!--这里是控制里登录的地址  登录和获取验证码  获取版本信息，-->
+             <mvc:exclude-mapping path="/page/getCode" />
+             <mvc:exclude-mapping path="/page/getGiftsAll" />
+             <mvc:exclude-mapping path="/page/getToken" />
 
 
              <bean class="com.xm.app.Interceptor.JWTInterceptor" />
          </mvc:interceptor>
-     </mvc:interceptors>-->
+     </mvc:interceptors>
 </beans>

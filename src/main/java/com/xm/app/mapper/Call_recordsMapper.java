@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.Call_records;
 import com.xm.app.entity.Call_recordsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface Call_recordsMapper {
     int countByExample(Call_recordsExample example);
@@ -27,4 +28,6 @@ public interface Call_recordsMapper {
     int updateByPrimaryKeySelective(Call_records record);
 
     int updateByPrimaryKey(Call_records record);
+
+    List<Call_records> getAllCallRecords();
 }

@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.Photos;
 import com.xm.app.entity.PhotosExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface PhotosMapper {
     int countByExample(PhotosExample example);
@@ -27,4 +28,7 @@ public interface PhotosMapper {
     int updateByPrimaryKeySelective(Photos record);
 
     int updateByPrimaryKey(Photos record);
+
+
+    List<Photos> getAllPhotos();
 }

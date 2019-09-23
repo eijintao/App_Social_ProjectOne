@@ -208,4 +208,9 @@
       updated_at = #{updatedAt,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!--查询全部用户关注表-->
+  <select id="getAllUserFollowing" resultType="User_following" >
+    select * from user_following
+  </select>
+
 </mapper>

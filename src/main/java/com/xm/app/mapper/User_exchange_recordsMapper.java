@@ -2,8 +2,9 @@ package com.xm.app.mapper;
 
 import com.xm.app.entity.User_exchange_records;
 import com.xm.app.entity.User_exchange_recordsExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface User_exchange_recordsMapper {
     int countByExample(User_exchange_recordsExample example);
@@ -27,4 +28,6 @@ public interface User_exchange_recordsMapper {
     int updateByPrimaryKeySelective(User_exchange_records record);
 
     int updateByPrimaryKey(User_exchange_records record);
+
+    List<User_exchange_records> getAllUserExchangeRecords();
 }
