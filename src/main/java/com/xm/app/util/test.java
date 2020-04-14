@@ -22,7 +22,7 @@ public class test {
             }
         }
 
-
+        System.out.println("这个是做测试GitHub用的");
 
     }
 
