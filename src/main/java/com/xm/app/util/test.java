@@ -13,7 +13,7 @@ public class test {
     public static void main(String[] args) {
 
 
-        for (int i = 0; i <1000 ; i++) {
+        for (int i = 0; i <10 ; i++) {
             String str= getRandomString(40);
             if(str.equals(getRandomString(40))){
                 System.out.println("您的两数相等。");
